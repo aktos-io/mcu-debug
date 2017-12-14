@@ -1,7 +1,7 @@
 Meta
 ---------------------
 
-1. Add [brief-instructions](./brief-instructions.md) to your README
+Add [brief-instructions](./brief-instructions.md) to your README.
 
 Setting up the Debugger
 ---------------------
