@@ -1,0 +1,10 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. $DIR/service-runner/tmux-launch
+launch-service $(calc-session-name "$0")
+
+PR=$(dirname $DIR)
+
+# run commands in tmux session
+run-in-tmux "cd $PR" "make start-gdb-server"
+run-in-tmux "cd $PR" "echo make debug-..."

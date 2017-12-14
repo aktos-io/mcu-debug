@@ -1,0 +1,3 @@
+[submodule "service-runner"]
+	path = service-runner
+	url = https://github.com/aktos-io/service-runner
