@@ -7,5 +7,5 @@ cd $PR
 launch-service $(calc-session-name "$0")
 
 # run commands in tmux session
-run-in-tmux "cd $PR" "make start-gdb-server"
-run-in-tmux "cd $PR" "echo make debug-..."
+run-in-tmux "make start-gdb-server"
+run-in-tmux "echo make debug-..."
