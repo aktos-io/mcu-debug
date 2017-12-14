@@ -36,7 +36,7 @@ info:
 	@echo
 	sleep 0.5
 
-create-session:
+create-debug-session:
 	$(dir)/session.service
 
 include $(dir)/debug-cmd.mk
