@@ -27,19 +27,12 @@ start-gdb-server: stop-gdb-server
 		done
 
 info:
-	@echo
-	@echo
-	@echo "------------------      DİKKAT    --------------------"
-	@echo "başka bir terminalde şunu yap: 'make start-gdb-server'"
-	@echo "------------------------------------------------------"
-	@echo
-	@echo
-	sleep 0.5
+	@echo "(Note: start-gdb-server on another terminal if not started yet)"
 
 create-debug-session:
 	$(dir)/session.service
 
-include $(dir)/debug-cmd.mk
+include $(dir)/cmd/debugger.mk
 include $(dir)/codeblocks/debugger.mk
 include $(dir)/gdbgui/debugger.mk
 #include $(dir)/qtcreator/debug-qtcreator.mk
