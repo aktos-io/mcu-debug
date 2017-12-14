@@ -2,7 +2,7 @@
 
 Add [brief-instructions](./brief-instructions.md) to your README.
 
-## Setting up the Debugger
+## Setting up the Debugging environment
 
 Whether Windows, Linux or any other OS, you need the followings:
 
@@ -19,7 +19,7 @@ Whether Windows, Linux or any other OS, you need the followings:
 
 ### Linux instructions:
 
-1: Debugger server:
+1. Debugger server:
 
     download `st-util` and add the directory to the path:
 
@@ -35,31 +35,31 @@ Whether Windows, Linux or any other OS, you need the followings:
         # unplug STM32 usb cable
         # plug STM32 usb cable  
 
-2. and 3.:  Debugger executable and the compiler:
+2. Debugger executable and the compiler:
 
   download and install `gdb-arm-none-eabi`. use one of the following:
 
 
-      Either:
+  Either:
 
-        sudo apt-get install gdb-arm-none-eabi
+    sudo apt-get install gdb-arm-none-eabi
 
-      or:
+  or:
 
-        download the tarball: https://launchpad.net/gcc-arm-embedded/+download
-        unzip
-        add this path to the `$PATH` variable in `~/.profile` file:
+    download the tarball: https://launchpad.net/gcc-arm-embedded/+download
+    unzip
+    add this path to the `$PATH` variable in `~/.profile` file:
 
-            PATH="$PATH:/path/to/arm-none-eabi-gdb"
-            export PATH
+        PATH="$PATH:/path/to/arm-none-eabi-gdb"
+        export PATH
 
-        make sure your `.profile` file is sourced. For example, in Debian LXDE,
-        we need to do the following:
+    make sure your `.profile` file is sourced. For example, in Debian LXDE,
+    we need to do the following:
 
-            cd ~; ln -s .profile .xsessionrc
+        cd ~; ln -s .profile .xsessionrc
 
 
-4. Download ChibiOS source code:
+3. Download ChibiOS source code:
 
       download Chibios 3.x:
 
