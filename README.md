@@ -1,10 +1,8 @@
-Meta
----------------------
+## Meta
 
 Add [brief-instructions](./brief-instructions.md) to your README.
 
-Setting up the Debugger
----------------------
+## Setting up the Debugger
 
 Whether Windows, Linux or any other OS, you need the followings:
 
@@ -18,8 +16,6 @@ Whether Windows, Linux or any other OS, you need the followings:
 3. Compiler: specifically `arm-none-eabi-gcc`
 4. Your libraries, RTOS source code, etc (if any)
 5. OPTIONAL: A GUI debugger (see [add-gui-debugger.md](./add-gui-debugger.md))
-
-## Setup on Linux
 
 ### Linux instructions:
 
