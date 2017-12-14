@@ -21,4 +21,4 @@ Whether Windows, Linux or any other OS, you need the followings:
 
 ## Setup on Linux
 
-(see ./setup-linux.md)
+(see [setup-linux](./setup-linux.md))
