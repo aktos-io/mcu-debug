@@ -1,3 +1,5 @@
+# General Instructions
+
 In order to add a new GUI debugger tool (code::blocks, qtcreator, eclipse, etc...)
 follow these instructions:
 
@@ -16,3 +18,9 @@ follow these instructions:
 
 NOTE: You should include all binaries in your PATH environment variable. Your RTOS
 and any other libraries should be in your search path as well.
+
+# List
+
+Codeblocks  : ./codeblocks
+QtCreator   : ./qtcreator
+gdbgui      : ./gdbgui

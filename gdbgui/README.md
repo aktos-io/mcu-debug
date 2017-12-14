@@ -1,3 +1,5 @@
+!!! Not working as expected, needs rework
+
 Follow: https://github.com/cs01/gdbgui/blob/master/INSTALLATION.md#running-from-source
 
 Add runner script:

@@ -24,7 +24,7 @@ Following the general instructions:
 
 
       Either:
-      
+
         sudo apt-get install gdb-arm-none-eabi
 
       or:
@@ -52,4 +52,4 @@ Following the general instructions:
           # if you dowloaded ChibiOS anywhere else from "$HOME" dir,
           ln -s /path/to/Chibios-3.x ~/ChibiOS
 
-5. See: codeblocks/README.md
+5. See: ./add-gui-debugger.md
