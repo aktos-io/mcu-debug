@@ -2,9 +2,14 @@ target remote localhost:4242
 monitor halt
 
 define reload
-    echo reloading...\n
+    echo --------------------------------\n
+    echo +++ compiling code...\n
+    echo --------------------------------\n
     shell make
 
+    echo --------------------------------\n
+    echo +++ flashing the binary...\n
+    echo --------------------------------\n
     # for the application code
     load ./build/ch.elf
 
