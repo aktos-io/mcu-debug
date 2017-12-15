@@ -24,7 +24,7 @@ start-gdb-server: stop-gdb-server
 		echo ""; 													\
 		echo "--------- restarting gdb server -------------"; 		\
 		echo ""; 													\
-		sleep 2; 													\
+		sleep 1; 													\
 		done
 
 info:
