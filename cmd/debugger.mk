@@ -2,6 +2,7 @@ debug-cmd: all info
 	@echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 	@echo "++++ NOTE: 'reload' when compiled code is changed. ++++"
 	@echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@sleep 2
 	arm-none-eabi-gdb -x $(dir)/gdb-init
 
 debug-cmd-help:
