@@ -4,6 +4,8 @@ More important commands have a `*`, `** `, ... by them.
 
 ** <ENTER>              repeat the last command
 ** exit                 quit current session
+** shell [cmd [args]]   run shell commands (type "exit" to return to gdb)
+** --------------------------------------------------
 
 ### Breakpoints
 
@@ -80,6 +82,5 @@ rbreak regexpr     	useful for breakpoint on overloaded member name
 ### Miscellaneous
 
 define command ... end        define user command
-shell command args       execute shell command
 source file        	load gdb commands from file
 quit        		quit gdb
