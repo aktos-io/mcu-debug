@@ -35,9 +35,12 @@ enable 2                turn disabled breakpoint back on
 ** c, cont              continue the program
 ** reload               reload the program
 
-...usual startup:
-    # should stop at main(), see ../gdb-init
+...basic usage:
+    # should stop at main()
     (gdb) c
+    #... inspect code
+    #... when you changed your source code, simply reload with:
+    (gdb) reload
 
 ...soft reset the board:
     (gdb) Ctrl+C
