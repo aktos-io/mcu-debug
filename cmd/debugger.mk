@@ -1,15 +1,7 @@
 debug-cmd: all info
-	@echo
-	@echo
-	@echo
-	@echo "------------------------------------------------------"
-	@echo "------------------      DİKKAT    --------------------"
-	@echo "kodu her değiştirdiğinde bu programı tekrar çalıştır "
-	@echo "------------------------------------------------------"
-	@echo
-	@echo
-	@echo
-	sleep 1
+	@echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+	@echo "++++ NOTE: 'reload' when compiled code is changed. ++++"
+	@echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 	arm-none-eabi-gdb -x $(dir)/gdb-init
 
 debug-cmd-help:

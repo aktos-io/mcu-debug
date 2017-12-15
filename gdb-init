@@ -1,6 +1,25 @@
 target remote localhost:4242
 monitor halt
-load ./build/ch.elf
-file ./build/ch.elf
-#monitor sleep 1000
-monitor reset
+
+define reload
+    # for the application code
+    load ./build/ch.elf
+
+    # for the symbol table
+    file ./build/ch.elf
+
+    # put a temporary breakpoint to the main() function
+    tb main
+    cont 
+end
+reload
+
+define reset
+    monitor reset
+end
+reset
+
+define exit
+    kill
+    quit
+end
