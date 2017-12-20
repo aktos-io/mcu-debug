@@ -34,6 +34,3 @@ create-debug-session:
 	$(dir)/session.service
 
 include $(dir)/cmd/debugger.mk
-include $(dir)/codeblocks/debugger.mk
-include $(dir)/gdbgui/debugger.mk
-include $(dir)/qtcreator/debug-qtcreator.mk
