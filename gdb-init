@@ -12,7 +12,7 @@ define reload
         echo --------------------------------\n
         echo !!! compilation failed!\n
         echo --------------------------------\n
-    else 
+    else
         echo --------------------------------\n
         echo +++ flashing the binary...\n
         echo --------------------------------\n
@@ -37,6 +37,15 @@ define exit
     quit
 end
 
-# --- initialize --- 
-reload 
+define curr
+    frame
+    list
+end
+document curr
+    Show the code around currently hit breakpoint
+end
+
+
+# --- initialize ---
+reload
 reset
