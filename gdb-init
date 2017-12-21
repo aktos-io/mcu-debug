@@ -2,32 +2,50 @@ target remote localhost:4242
 monitor halt
 
 define reload
+    dont-repeat
     echo --------------------------------\n
     echo +++ compiling code...\n
     echo --------------------------------\n
-    shell make
+    shell make; echo "set \$retval = $?" > /tmp/q
+    source /tmp/q
+    if $retval >  0
+        echo --------------------------------\n
+        echo !!! compilation failed!\n
+        echo --------------------------------\n
+    else
+        echo --------------------------------\n
+        echo +++ flashing the binary...\n
+        echo --------------------------------\n
+        # for the application code
+        load ./build/ch.elf
 
-    echo --------------------------------\n
-    echo +++ flashing the binary...\n
-    echo --------------------------------\n
-    # for the application code
-    load ./build/ch.elf
+        # for the symbol table
+        file ./build/ch.elf
 
-    # for the symbol table
-    file ./build/ch.elf
-
-    # put a temporary breakpoint to the main() function
-    tb main
-    cont
+        # put a temporary breakpoint to the main() function
+        tb main
+        cont
+    end
 end
-reload
 
 define reset
     monitor reset
 end
-reset
 
 define exit
     kill
     quit
 end
+
+define curr
+    frame
+    list
+end
+document curr
+    Show the code around currently hit breakpoint
+end
+
+
+# --- initialize ---
+reload
+reset

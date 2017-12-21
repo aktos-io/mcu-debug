@@ -58,8 +58,7 @@ CTRL-C                  actually SIGINT, stop execution of current program
 ** f, frame             show current execution position
 
 ...show code around current breakpoint:
-    (gdb) f
-    (gdb) l
+    (gdb) curr
 
 ### Browsing source
 
