@@ -1,6 +1,12 @@
 target remote localhost:4242
 monitor halt
 
+define gen-breakpoints
+    # generate hardcoded breakpoints
+    shell make gen-breakpoints
+    source breakpoints.txt
+end
+
 define reload
     dont-repeat
     echo --------------------------------\n
@@ -24,9 +30,6 @@ define reload
 
         # put a temporary breakpoint to the main() function
         tb main
-        # generate hardcoded breakpoints
-        shell make gen-breakpoints
-        source breakpoints.txt
         cont
     end
 end

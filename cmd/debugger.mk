@@ -27,7 +27,9 @@ debug-cmd-help:
 breakpoint_syntax := // debugger
 breakpoint_file := ./breakpoints.txt
 gen-breakpoints:
-	@echo "Generate breakpoints after '$(breakpoint_syntax)' lines:"
-	@grep "$(breakpoint_syntax)" * -Hnos | grep -Eo "^[^:]+:[^:]+" | awk -F: '{x="break "$$1":"($$2 + 1); print x}' > $(breakpoint_file)
 	@echo --------------------------------------------------
+	@echo " * Generate breakpoints for '$(breakpoint_syntax)' lines:"
+	@grep "$(breakpoint_syntax)" * -Hnos | grep -Eo "^[^:]+:[^:]+" | awk -F: '{x="break "$$1":"($$2 + 1); print x}' > $(breakpoint_file)
+	@echo 
 	@cat $(breakpoint_file)
+	@echo --------------------------------------------------

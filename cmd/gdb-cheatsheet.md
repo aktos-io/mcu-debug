@@ -23,7 +23,7 @@ disable 2               turn a breakpoint off, but don't remove it
 enable 2                turn disabled breakpoint back on
 ** watch data           set software watchpoint on variable
 ** i watchpoints        show current watchpoints
-
+** gen-breakpoints      generates and uses breakpoints from source code
 
 ### Browsing data
 
