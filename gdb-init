@@ -24,6 +24,9 @@ define reload
 
         # put a temporary breakpoint to the main() function
         tb main
+        # generate hardcoded breakpoints
+        shell make gen-breakpoints
+        source breakpoints.txt
         cont
     end
 end

@@ -23,3 +23,11 @@ debug-cmd-help:
 	@#         do this
 	@# (note: $$ is for escaping $ in Makefile)
 	@cat $(dir)/cmd/gdb-cheatsheet.md | sed -n '/^\.\.\./,/^$$/p'
+
+breakpoint_syntax := // debugger
+breakpoint_file := ./breakpoints.txt
+gen-breakpoints:
+	@echo "Generate breakpoints after '$(breakpoint_syntax)' lines:"
+	@grep "$(breakpoint_syntax)" * -Hnos | grep -Eo "^[^:]+:[^:]+" | awk -F: '{x="break "$$1":"($$2 + 1); print x}' > $(breakpoint_file)
+	@echo --------------------------------------------------
+	@cat $(breakpoint_file)
