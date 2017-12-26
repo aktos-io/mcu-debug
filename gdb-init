@@ -1,10 +1,15 @@
 target remote localhost:4242
 monitor halt
 
-define gen-breakpoints
+define get-breakpoints
     # generate hardcoded breakpoints
     shell make gen-breakpoints
+    delete
     source breakpoints.txt
+end
+
+define cheatsheet
+    shell make debug-cmd-help
 end
 
 define reload
@@ -12,8 +17,8 @@ define reload
     echo --------------------------------\n
     echo +++ compiling code...\n
     echo --------------------------------\n
-    shell make; echo "set \$retval = $?" > /tmp/q
-    source /tmp/q
+    shell make; echo "set \$retval = $?" > /tmp/gdb-retval
+    source /tmp/gdb-retval
     if $retval >  0
         echo --------------------------------\n
         echo !!! compilation failed!\n
@@ -31,8 +36,14 @@ define reload
         # put a temporary breakpoint to the main() function
         tb main
         cont
+        echo ----------------------------------------\n
+        echo ... 'reload' when source code is changed\n
+        echo ... 'cheatsheet' for cheatsheet\n
+        echo ----------------------------------------\n
+
     end
 end
+
 
 define reset
     monitor reset

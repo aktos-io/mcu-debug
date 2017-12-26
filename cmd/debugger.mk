@@ -1,8 +1,4 @@
 debug-cmd: all info
-	@echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@echo "++++ NOTE: 'reload' when compiled code is changed. ++++"
-	@echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-	@sleep 2
 	arm-none-eabi-gdb -x $(dir)/gdb-init
 
 debug-cmd-help:
@@ -30,6 +26,6 @@ gen-breakpoints:
 	@echo --------------------------------------------------
 	@echo " * Generate breakpoints for '$(breakpoint_syntax)' lines:"
 	@grep "$(breakpoint_syntax)" * -Hnos | grep -Eo "^[^:]+:[^:]+" | awk -F: '{x="break "$$1":"($$2 + 1); print x}' > $(breakpoint_file)
-	@echo 
+	@echo
 	@cat $(breakpoint_file)
 	@echo --------------------------------------------------
