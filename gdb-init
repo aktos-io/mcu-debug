@@ -34,12 +34,12 @@ define reload
         file ./build/ch.elf
 
         # put a temporary breakpoint to the main() function
-        tb main
-        cont
         echo ----------------------------------------\n
         echo ... 'reload' when source code is changed\n
         echo ... 'cheatsheet' for cheatsheet\n
         echo ----------------------------------------\n
+        tb main
+        cont
 
     end
 end
