@@ -46,6 +46,7 @@ end
 
 
 define reset
+    monitor halt
     monitor reset
 end
 
@@ -69,4 +70,3 @@ end
 
 # --- initialize ---
 reload
-reset
