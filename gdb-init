@@ -55,8 +55,12 @@ define exit
 end
 
 define curr
-    frame
-    list
+    dont-repeat
+    # frame
+    # list
+
+    layout src
+    focus cmd
 end
 document curr
     Show the code around currently hit breakpoint

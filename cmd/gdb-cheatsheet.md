@@ -28,6 +28,8 @@ enable 2                turn disabled breakpoint back on
 ### Browsing data
 
 ** p, print VAR         print `VAR`'s contents
+** print/x              display as Hex
+** set myvar = 5      set `myvar` to 5 
 
 
 ### Running the program
@@ -61,6 +63,11 @@ CTRL-C                  actually SIGINT, stop execution of current program
 
 ...show code around current breakpoint:
     (gdb) curr
+    or
+    (gdb) layout src
+    ...
+    (gdb) tui disable  # <- return to default gdb console
+    (gdb) focus cmd    # <- focus to cmd
 
 ### Browsing source
 
