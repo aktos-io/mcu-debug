@@ -1,14 +1,5 @@
 Flashing and debugging
 ---------------------
 
-Basic instructions:
-
-1. Flashing                    : `make write`
-2. Debugging:
-    1. Start a session+server      : `make create-debug-session`
-    2. Start your debugger client  :
-        either:
-            `make debug-cmd`        for command line gdb client
-            `make debug-cmd-help`   for short cheatsheet
-        or:
-            `make debug-gui-...`
+A. Flashing (without debugging)     : `make write`
+B. Debugging with `debug-cmd`       : `make create-debug-session`
