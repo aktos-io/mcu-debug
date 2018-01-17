@@ -24,7 +24,7 @@ breakpoint_file := ./breakpoints.txt
 gen-breakpoints:
 	@echo --------------------------------------------------
 	@echo " * Generate breakpoints from '// debugger' lines:"
-	@grep "[a-zA-Z].*[^/]//\s*debugger" * -Hnos | grep -Eo "^[^:]+:[^:]+" | awk -F: '{x="break "$$1":"($$2 + 0); print x}' > $(breakpoint_file)
+	@grep "^[^/]*[a-zA-Z].*[^/]//\s*debugger" * -Hnos | grep -Eo "^[^:]+:[^:]+" | awk -F: '{x="break "$$1":"($$2 + 0); print x}' > $(breakpoint_file)
 	@echo
 	@cat $(breakpoint_file)
 	@echo --------------------------------------------------
