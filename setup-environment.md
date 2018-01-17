@@ -1,6 +1,6 @@
 # Description
 
-Whether Windows, Linux or any other OS, you need the followings:
+Whether you use Windows, Linux or any other OS, you need the following tools:
 
 1. Debugger server:
   an application that will forward requests to/from STM32 and
