@@ -28,5 +28,5 @@ variable
 To list available GUI debuggers, use the following command:
 
 ```
-make debug-gui [TAB][TAB]
+make debug-gui[TAB][TAB]
 ```
