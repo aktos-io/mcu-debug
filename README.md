@@ -1,6 +1,6 @@
 # Setup your environment
 
-See [setup-environment.md](./setup-environment.md)
+[Setup your environment](./setup-environment.md) if you didn't already.
 
 # Setup your project 
 
