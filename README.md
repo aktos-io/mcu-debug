@@ -1,8 +1,9 @@
-# Setup your environment
 
+# Usage
+
+## Setup your environment (for the first time)
 [Setup your environment](./setup-environment.md) if you didn't already.
 
-# Setup your project 
 
 ## Add `mcu-debug` to your project 
 
