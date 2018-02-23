@@ -12,7 +12,15 @@ git submodule add https://github.com/aktos-io/mcu-debug
 git submodule update --init --recursive 
 ```
 
-## Add debugging info
+## Include in your `Makefile`
+
+Include mcu-debug makefiles in your main Makefile:
+
+```mk
+include ./mcu-debug/main.mk
+```
+
+## Add debugging info to your documentation
 
 Add the following instructions to your project's `README`:
 
