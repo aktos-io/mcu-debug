@@ -5,7 +5,17 @@ define get-breakpoints
     # generate hardcoded breakpoints
     shell make gen-breakpoints
     delete
-    source breakpoints.txt
+    source _breakpoints.txt
+end
+
+define wwindow
+    shell touch watch-window.txt
+    echo Watch Window: \n
+    echo --------------------------------\n
+    source watch-window.txt
+end
+document wwindow
+    Get pre-defined variable contents from watch-window.txt
 end
 
 define cheatsheet
