@@ -49,6 +49,7 @@ define reload
         echo ... 'get-breakpoints' for "// debugger" lines\n
         echo ... 'cheatsheet' for cheatsheet\n
         echo ----------------------------------------\n
+        get-breakpoints
         tb main
         cont
 
