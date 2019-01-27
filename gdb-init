@@ -2,6 +2,10 @@ target remote localhost:4242
 monitor halt
 
 define get-breakpoints
+    update-breakpoints
+end
+
+define update-breakpoints
     # generate hardcoded breakpoints
     shell make gen-breakpoints
     delete
@@ -46,13 +50,12 @@ define reload
         # put a temporary breakpoint to the main() function
         echo ----------------------------------------\n
         echo ... 'reload' when source code is changed\n
-        echo ... 'get-breakpoints' for "// debugger" lines\n
+        echo ... 'update-breakpoints' to update breakpoints from "// debugger" lines\n
         echo ... 'cheatsheet' for cheatsheet\n
         echo ----------------------------------------\n
-        get-breakpoints
+        update-breakpoints
         tb main
         cont
-
     end
 end
 

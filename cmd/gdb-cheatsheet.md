@@ -23,13 +23,13 @@ disable 2               turn a breakpoint off, but don't remove it
 enable 2                turn disabled breakpoint back on
 ** watch data           set software watchpoint on variable
 ** i watchpoints        show current watchpoints
-** get-breakpoints      generates and uses breakpoints from source code
+** update-breakpoints      generates and uses breakpoints from source code
 
 ### Browsing data
 
 ** p, print VAR         print `VAR`'s contents
 ** print/x              display as Hex
-** set myvar = 5      set `myvar` to 5 
+** set myvar = 5      set `myvar` to 5
 
 
 ### Running the program
@@ -39,12 +39,11 @@ enable 2                turn disabled breakpoint back on
 
 ...basic usage:
     # should stop at main()
-    (gdb) get-breakpoints  ## optional
+    (gdb) update-breakpoints  ## optional
     (gdb) c
     #... inspect code
     #... when you changed your source code, simply reload with:
     (gdb) reload
-    (gdb) get-breakpoints ## do not forget
 
 ...soft reset the board:
     (gdb) Ctrl+C
