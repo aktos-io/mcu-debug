@@ -19,7 +19,7 @@ document wwindow
 end
 
 define cheatsheet
-    shell make debug-cmd-help
+    shell make debug-with-cmd-help
 end
 
 define reload

@@ -30,7 +30,7 @@ start-gdb-server: stop-gdb-server
 info:
 	@echo "(Note: start-gdb-server on another terminal if not started yet)"
 
-create-debug-session:
+start-debugging:
 	$(dir)/session.service
 
 include $(dir)/cmd/debugger.mk

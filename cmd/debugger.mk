@@ -1,7 +1,7 @@
-debug-cmd: all info
+debug-with-cmd: all info
 	arm-none-eabi-gdb -x $(dir)/gdb-init
 
-debug-cmd-help:
+debug-with-cmd-help:
 	@clear
 	@echo
 	@echo "Important commands"

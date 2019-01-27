@@ -5,11 +5,11 @@
 [Setup your environment](./setup-environment.md) if you didn't already.
 
 
-## Add `mcu-debug` to your project 
+## Add `mcu-debug` to your project
 
 ```
 git submodule add https://github.com/aktos-io/mcu-debug
-git submodule update --init --recursive 
+git submodule update --init --recursive
 ```
 
 ## Include in your `Makefile`
@@ -29,6 +29,5 @@ Flashing and debugging
 ---------------------
 
 A. Flashing (without debugging)     : `make write`
-B. Debugging with `debug-cmd`       : `make create-debug-session`
+B. Debugging with `debug-cmd`       : `make start-debug-session`
 ```
-
