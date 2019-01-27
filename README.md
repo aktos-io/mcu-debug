@@ -28,6 +28,6 @@ Add the following instructions to your project's `README`:
 Flashing and debugging
 ---------------------
 
-A. Flashing (without debugging)     : `make write`
-B. Debugging with `debug-cmd`       : `make start-debug-session`
+A. Flashing (without debugging)                   : `make write`
+B. Debugging with command line (`debug-with-cmd`) : `make start-debug-session`
 ```
