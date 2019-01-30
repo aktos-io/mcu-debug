@@ -8,7 +8,10 @@ erase:
 	@echo
 	@echo
 	@echo "------------------      WARNING    --------------------"
-	@echo "Make sure you didn't forget to short circuit Boot0 to VDD"
+	@echo "In order to erase a buggy code, you need to:"
+	@echo "1. either: tie Boot0 to VDD before power up."
+	@echo "2. or	: Connect the NRST pin to the SWD to let debugger load"
+	@echo "     	  the code under RESET."
 	@echo "------------------------------------------------------"
 	@echo
 	@echo
@@ -24,7 +27,7 @@ start-gdb-server: stop-gdb-server
 		echo ""; 													\
 		echo "--------- restarting gdb server -------------"; 		\
 		echo ""; 													\
-		sleep 1; 													\
+		sleep 1s; 													\
 		done
 
 info:
