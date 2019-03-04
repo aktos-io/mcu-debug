@@ -2,7 +2,12 @@ dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
 # write program to MCU
 write: all
-	st-flash --reset write build/ch.bin 0x8000000
+	@st-flash --reset write build/ch.bin 0x8000000 || { \
+		echo "----------------------------------------------------------------"; \
+		echo "HINT: Try resetting MCU (NRST->GND, then VDD) then retry loading."; \
+		echo "----------------------------------------------------------------"; \
+		exit 5; \
+	}
 
 erase:
 	@echo
