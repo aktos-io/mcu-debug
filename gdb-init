@@ -1,16 +1,23 @@
-set pagination off
-target extended-remote localhost:4242
-monitor halt
+define connect
+    set pagination off
+    target extended-remote localhost:4242
+    monitor halt
+end
 
-define get-breakpoints
+define upp
     update-breakpoints
+end
+document upp
+    Short for "update-breakpoints"
 end
 
 define update-breakpoints
-    # generate hardcoded breakpoints
     shell make gen-breakpoints
     delete
     source _breakpoints.txt
+end
+document update-breakpoints
+    Generate hardcoded breakpoints by using "// debugger" lines
 end
 
 define wwindow
@@ -85,4 +92,5 @@ end
 
 
 # --- initialize ---
+connect
 reload
