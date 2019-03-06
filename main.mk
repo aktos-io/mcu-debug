@@ -35,8 +35,8 @@ start-gdb-server: stop-gdb-server
 		sleep 1s; 													\
 		done
 
-info:
-	@echo "(Note: start-gdb-server on another terminal if not started yet)"
+mcu-info:
+	@st-info --probe
 
 start-debugging:
 	$(dir)/session.service
