@@ -1,7 +1,7 @@
+set pagination off
+
 define connect
-    set pagination off
     target extended-remote localhost:4242
-    monitor halt
 end
 
 define upp
