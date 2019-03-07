@@ -39,6 +39,15 @@ mcu-info:
 	@st-info --probe
 
 start-debugging:
-	$(dir)/session.service
+	@if ! hash tmux 2> /dev/null; then \
+		echo "Error: Tmux is not installed, so you need to launch programs manually"; \
+		echo "in separate terminals."; \
+		echo ; \
+		echo "* Run \"make start-gdb-server\" in a terminal window"; \
+		echo "* Run \"make debug-with-cmd\" in a separate terminal window"; \
+		echo ; \
+	else	\
+		$(dir)/session.service ; \
+	fi
 
 include $(dir)/cmd/debugger.mk
