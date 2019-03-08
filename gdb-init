@@ -4,10 +4,10 @@ define connect
     target extended-remote localhost:4242
 end
 
-define upp
+define ub
     update-breakpoints
 end
-document upp
+document ub
     Short for "update-breakpoints"
 end
 
@@ -67,7 +67,7 @@ define reload
         # put a temporary breakpoint to the main() function
         echo ----------------------------------------\n
         echo ... 'reload' when source code is changed\n
-        echo ... 'update-breakpoints' to update breakpoints from "// debugger" lines\n
+        echo ... 'update-breakpoints' ('ub') to re-generate breakpoints from "// debugger" lines\n
         echo ... 'cheatsheet' for cheatsheet\n
         echo ----------------------------------------\n
         update-breakpoints
