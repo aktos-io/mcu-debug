@@ -1,4 +1,12 @@
-debug-with-cmd: all
+debug-with-cmd:
+	@if [ "$(BUILD_TARGET)" != "Debug" ]; then \
+		echo ----------------------------------------------------; \
+		echo "Not in 'Debug' mode! Things might not act as you expected."; \
+		echo 'Set "Debug" in your Target file'; \
+		echo ----------------------------------------------------; \
+		sleep 5; \
+	fi
+	$(MAKE) all
 	@echo "------------------------------------------------------------------"
 	@echo "Start GDB server with 'make start-gdb-server' on another terminal."
 	@echo "------------------------------------------------------------------"
