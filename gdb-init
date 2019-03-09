@@ -12,7 +12,7 @@ document ub
 end
 
 define update-breakpoints
-    shell make gen-breakpoints
+    shell make gen-breakpoints --no-print-directory
     delete
     source _breakpoints.txt
 end
@@ -31,14 +31,14 @@ document wwindow
 end
 
 define cheatsheet
-    shell make debug-with-cmd-help
+    shell make debug-with-cmd-help --no-print-directory
 end
 
 define restart-server
     echo FORCE RESTARTING GDB SERVER\n
     disconnect
-    shell make stop-gdb-server
-    # gdb server will restart by itself
+    shell make stop-gdb-server --no-print-directory
+    # gdb server will restart by itself in 1 second
     shell sleep 3s
     connect
 end
@@ -47,22 +47,20 @@ define reload
     dont-repeat
     echo --------------------------------\n
     echo +++ compiling code...\n
-    echo --------------------------------\n
-    shell make; echo "set \$retval = $?" > /tmp/gdb-retval
+    shell make --no-print-directory; echo "set \$retval = $?" > /tmp/gdb-retval
     source /tmp/gdb-retval
     if $retval >  0
-        echo --------------------------------\n
         echo !!! compilation failed!\n
         echo --------------------------------\n
     else
-        echo --------------------------------\n
         echo +++ flashing the binary...\n
-        echo --------------------------------\n
         # for the application code
         load ./build/ch.elf
 
         # for the symbol table
         file ./build/ch.elf
+
+        echo done.\n
 
         # put a temporary breakpoint to the main() function
         echo ----------------------------------------\n
