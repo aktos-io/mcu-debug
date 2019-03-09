@@ -61,6 +61,9 @@ define reload
         file ./build/ch.elf
 
         echo done.\n
+        
+        # send a hard reset signal through NRST pin
+        reset
 
         # put a temporary breakpoint to the main() function
         echo ----------------------------------------\n
@@ -78,6 +81,7 @@ end
 define reset
     monitor halt
     monitor reset
+    monitor jtag_reset # send NRST signal, see https://github.com/texane/stlink/issues/774
 end
 
 define exit
