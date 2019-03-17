@@ -31,6 +31,7 @@ document wwindow
 end
 
 define cheatsheet
+    close-curr
     shell make debug-with-cmd-help --no-print-directory
 end
 
@@ -45,6 +46,7 @@ end
 
 define reload
     dont-repeat
+    close-curr
     echo --------------------------------\n
     echo +++ compiling code...\n
     shell make --no-print-directory; echo "set \$retval = $?" > /tmp/gdb-retval
@@ -61,18 +63,23 @@ define reload
         file ./build/ch.elf
 
         echo done.\n
-        
+
         # send a hard reset signal through NRST pin
         reset
+
+        update-breakpoints
+        tb main
+
+        # display TUI
+        curr
 
         # put a temporary breakpoint to the main() function
         echo ----------------------------------------\n
         echo ... 'reload' when source code is changed\n
-        echo ... 'update-breakpoints' ('ub') to re-generate breakpoints from "// debugger" lines\n
+        echo ... 'update-breakpoints' ('ub') to refresh the breakpoints\n
+        echo ... 'curr'/'close-curr' to show/hide the Terminal UI. \n
         echo ... 'cheatsheet' for cheatsheet\n
         echo ----------------------------------------\n
-        update-breakpoints
-        tb main
         cont
     end
 end
@@ -96,11 +103,21 @@ define curr
 
     layout src
     focus cmd
+
+    echo ------------------------------------------\n
+    echo Close above TUI by "close-curr" command. \n
+    echo ------------------------------------------\n
 end
 document curr
     Show the code around currently hit breakpoint
 end
 
+define close-curr
+    tui disable
+end
+document close-curr
+    Close the TUI display which is opened by "curr" command.
+end
 
 # --- initialize ---
 connect

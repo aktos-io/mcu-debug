@@ -23,7 +23,7 @@ disable 2               turn a breakpoint off, but don't remove it
 enable 2                turn disabled breakpoint back on
 ** watch data           set software watchpoint on variable
 ** i watchpoints        show current watchpoints
-** update-breakpoints      generates and uses breakpoints from source code
+** update-breakpoints, ub      generates and uses breakpoints from source code
 
 ### Browsing data
 
@@ -45,12 +45,13 @@ enable 2                turn disabled breakpoint back on
     #... when you changed your source code, simply reload with:
     (gdb) reload
 
-...soft reset the board:
+soft reset the board:
     (gdb) Ctrl+C
     (gdb) reset
 
 ** n, next              step but step over functions
 ** s, step              single step the program; step into functions
+** fin, finish          step out the current function
 step count              singlestep \fIcount\fR times
 next count              next \fIcount\fR times
 CTRL-C                  actually SIGINT, stop execution of current program
@@ -59,13 +60,12 @@ CTRL-C                  actually SIGINT, stop execution of current program
 
 ** bt        	        print stack backtrace
 ** f, frame             show current execution position
+** curr (close-curr)    show/hide TUI mode
 
 ...show code around current breakpoint:
     (gdb) curr
-    or
-    (gdb) layout src
     ...
-    (gdb) tui disable  # <- return to default gdb console
+    (gdb) close-curr
     (gdb) focus cmd    # <- focus to cmd
 
 ### Browsing source
