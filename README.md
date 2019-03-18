@@ -33,9 +33,3 @@ B. Debugging with command line (`debug-with-cmd`) : `make start-debuging`
 
 * st-link: https://github.com/texane/stlink/blob/master/doc/compiling.md
 * `apt-get install gdb-arm-none-eabi`
-
-
-
-
-```
-apt-get install 
