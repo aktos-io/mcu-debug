@@ -10,7 +10,7 @@ debug-with-cmd:
 	@echo "------------------------------------------------------------------"
 	@echo "Start GDB server with 'make start-gdb-server' on another terminal."
 	@echo "------------------------------------------------------------------"
-	arm-none-eabi-gdb -x $(dir)/gdb-init
+	$(GCC_Path)arm-none-eabi-gdb -x $(dir)/gdb-init
 
 debug-with-cmd-help:
 	@clear
