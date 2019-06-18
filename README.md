@@ -26,7 +26,7 @@ Add the following instructions to your project's `README`:
 
 ```
 A. Flashing (without debugging)                   : `make write`
-B. Debugging with command line (`debug-with-cmd`) : `make start-debuging`
+B. Debugging with command line (`debug-with-cmd`) : `make debug`
 ```
 
 # Requirements 

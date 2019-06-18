@@ -38,7 +38,7 @@ start-gdb-server: stop-gdb-server
 mcu-info:
 	@st-info --probe
 
-start-debugging:
+debug:
 	@if ! hash tmux 2> /dev/null; then \
 		echo "Error: Tmux is not installed, so you need to launch programs manually"; \
 		echo "in separate terminals."; \
