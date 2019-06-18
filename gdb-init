@@ -113,7 +113,7 @@ document curr
 end
 
 define close-curr
-    #tui disable
+    tui disable
 end
 document close-curr
     Close the TUI display which is opened by "curr" command.
