@@ -17,7 +17,7 @@ Whether you use Windows, Linux or any other OS, you need the following tools:
 
 1. Debugger server:
 
-    download `st-util` and add the directory to the path:
+    Download `st-util` and add the directory to the path:
 
         mkdir ~/bin
         cd ~/bin
@@ -33,7 +33,7 @@ Whether you use Windows, Linux or any other OS, you need the following tools:
 
 2. Debugger executable and the compiler:
 
-  download and install `gdb-arm-none-eabi`. use one of the following:
+  Download and install `gdb-arm-none-eabi`. use one of the following:
 
 
   Either:
@@ -42,25 +42,14 @@ Whether you use Windows, Linux or any other OS, you need the following tools:
 
   or:
 
-    download the tarball: https://launchpad.net/gcc-arm-embedded/+download
-    unzip
-    add this path to the `$PATH` variable in `~/.profile` file:
+    Download the tarball: https://launchpad.net/gcc-arm-embedded/+download
+    Unzip
+    Add this path to the `$PATH` variable in `~/.profile` file:
 
         PATH="$PATH:/path/to/arm-none-eabi-gdb"
         export PATH
 
-    make sure your `.profile` file is sourced. For example, in Debian LXDE,
+    Make sure your `.profile` file is sourced. For example, in Debian LXDE,
     we need to do the following:
 
         cd ~; ln -s .profile .xsessionrc
-
-
-3. Download ChibiOS source code:
-
-      download Chibios 3.x:
-
-          cd ~
-          git clone https://github.com/ChibiOS/ChibiOS
-
-          # if you dowloaded ChibiOS anywhere else from "$HOME" dir,
-          ln -s /path/to/Chibios-3.x ~/ChibiOS
