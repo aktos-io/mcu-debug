@@ -65,7 +65,7 @@ define reload
         echo done.\n
 
         # send a hard reset signal through NRST pin
-        reset
+        reset-mcu
 
         update-breakpoints
         tb main
@@ -85,10 +85,13 @@ define reload
 end
 
 
-define reset
+define reset-mcu
     monitor halt
     monitor reset
     monitor jtag_reset # send NRST signal, see https://github.com/texane/stlink/issues/774
+end
+document reset-mcu
+    Resets MCU state by sending physical NRST signal
 end
 
 define exit
