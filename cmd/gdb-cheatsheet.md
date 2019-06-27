@@ -42,7 +42,6 @@ enable 2                turn disabled breakpoint back on
 ```
 ** c, cont              continue the program
 ** reload               reload the program
-```
 
 ...basic usage:
     # should stop at main()
@@ -54,9 +53,8 @@ enable 2                turn disabled breakpoint back on
 
 soft reset the board:
     (gdb) Ctrl+C
-    (gdb) reset
+    (gdb) reset-mcu
 
-```
 ** n, next              step but step over functions
 ** s, step              single step the program; step into functions
 ** fin, finish          step out the current function
@@ -71,7 +69,6 @@ CTRL-C                  actually SIGINT, stop execution of current program
 ** bt        	        print stack backtrace
 ** f, frame             show current execution position
 ** curr (close-curr)    show/hide TUI mode
-```
 
 ...show code around current breakpoint:
     (gdb) curr
@@ -79,6 +76,7 @@ CTRL-C                  actually SIGINT, stop execution of current program
     (gdb) close-curr
     (gdb) focus cmd    # <- focus to cmd
 
+```
 ### Browsing source
 
 ```
