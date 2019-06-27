@@ -1,14 +1,17 @@
 GDB commands by function - simple guide
 ---------------------------------------
-More important commands have a `*`, `** `, ... by them.
+> More important commands have a `*`, `** ` or `...` prefix.
 
+```
 ** <ENTER>              repeat the last command
 ** exit                 quit current session
 ** shell [cmd [args]]   run shell commands (type "exit" to return to gdb)
 ** --------------------------------------------------
+```
 
 ### Breakpoints
 
+```
 ** b, break ...         set a breakpoint:
 **          basic.c:101     on line 101 of file basic.c
 **          main            on a function
@@ -24,18 +27,22 @@ enable 2                turn disabled breakpoint back on
 ** watch data           set software watchpoint on variable
 ** i watchpoints        show current watchpoints
 ** update-breakpoints, ub      generates and uses breakpoints from source code
+```
 
 ### Browsing data
 
+```
 ** p, print VAR         print `VAR`'s contents
 ** print/x              display as Hex
 ** set myvar = 5      set `myvar` to 5
-
+```
 
 ### Running the program
 
+```
 ** c, cont              continue the program
 ** reload               reload the program
+```
 
 ...basic usage:
     # should stop at main()
@@ -49,18 +56,22 @@ soft reset the board:
     (gdb) Ctrl+C
     (gdb) reset
 
+```
 ** n, next              step but step over functions
 ** s, step              single step the program; step into functions
 ** fin, finish          step out the current function
 step count              singlestep \fIcount\fR times
 next count              next \fIcount\fR times
 CTRL-C                  actually SIGINT, stop execution of current program
+```
 
 ### Stack backtrace
 
+```
 ** bt        	        print stack backtrace
 ** f, frame             show current execution position
 ** curr (close-curr)    show/hide TUI mode
+```
 
 ...show code around current breakpoint:
     (gdb) curr
@@ -70,27 +81,32 @@ CTRL-C                  actually SIGINT, stop execution of current program
 
 ### Browsing source
 
-list 101        	list 10 lines around line 101
-list 1,10        list lines 1 to 10
-list main  	list lines around function
-list basic.c:main        list from another file basic.c
-list -        	list previous 10 lines
-
+```
+list 101        	    list 10 lines around line 101
+list 1,10               list lines 1 to 10
+list main  	            list lines around function
+list basic.c:main       list from another file basic.c
+list -        	        list previous 10 lines
+```
 
 ### History Display
 
-show commands        	print command history (>= gdb 4.0)
-info editing       	print command history (gdb 3.5)
-ESC-CTRL-J        	switch to vi edit mode from emacs edit mode
-set history expansion on       turn on c-shell like history
-break class::member       set breakpoint on class member. may get menu
-list class::member        list member in class
-ptype class               print class members
-print *this        	print contents of this pointer
-rbreak regexpr     	useful for breakpoint on overloaded member name
+```
+show commands        	    print command history (>= gdb 4.0)
+info editing       	        print command history (gdb 3.5)
+ESC-CTRL-J        	        switch to vi edit mode from emacs edit mode
+set history expansion on    turn on c-shell like history
+break class::member         set breakpoint on class member. may get menu
+list class::member          list member in class
+ptype class                 print class members
+print *this        	        print contents of this pointer
+rbreak regexpr     	        useful for breakpoint on overloaded member name
+```
 
 ### Miscellaneous
 
+```
 define command ... end        define user command
 source file        	load gdb commands from file
 quit        		quit gdb
+```
