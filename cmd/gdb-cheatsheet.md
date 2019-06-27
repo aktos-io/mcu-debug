@@ -51,7 +51,7 @@ enable 2                turn disabled breakpoint back on
     #... when you changed your source code, simply reload with:
     (gdb) reload
 
-soft reset the board:
+soft and hard reset (through NRST pin) the board:
     (gdb) Ctrl+C
     (gdb) reset-mcu
 
