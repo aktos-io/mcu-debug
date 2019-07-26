@@ -67,13 +67,14 @@ define reload
         # send a hard reset signal through NRST pin
         reset-mcu
 
+	# initialize breakpoints
         update-breakpoints
-        tb main
+        tb main	
+        break _unhandled_exception
 
         # display TUI
         #curr
 
-        # put a temporary breakpoint to the main() function
         echo ----------------------------------------\n
         echo ... 'reload' when source code is changed\n
         echo ... 'update-breakpoints' ('ub') to refresh the breakpoints\n
