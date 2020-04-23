@@ -1,3 +1,11 @@
+ifneq (, $(shell which arm-none-eabi-gdb))
+GDB := arm-none-eabi-gdb
+else ifneq(, $(shell which gdb-multiarch))
+GDB := gdb-multiarch
+else
+$(error "No GDB executable found")
+endif
+
 debug-with-cmd:
 	@if [ "$(BUILD_TARGET)" != "Debug" ]; then \
 		echo ----------------------------------------------------; \
@@ -10,7 +18,7 @@ debug-with-cmd:
 	@echo "------------------------------------------------------------------"
 	@echo "Start GDB server with 'make start-gdb-server' on another terminal."
 	@echo "------------------------------------------------------------------"
-	$(GCC_Path)arm-none-eabi-gdb -x $(dir)/gdb-init
+	$(GCC_Path)$(GDB) -x $(dir)/gdb-init
 
 debug-with-cmd-help:
 	@clear
