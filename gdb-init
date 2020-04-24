@@ -1,7 +1,9 @@
 set pagination off
 
 define connect
-    target extended-remote localhost:4242
+    # "TARGET_ADDRESS" is replaced with appropriate value 
+    # via regex in Makefile
+    target extended-remote TARGET_ADDRESS
 end
 
 define ub
