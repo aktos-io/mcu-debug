@@ -33,8 +33,9 @@ document wwindow
 end
 
 define cheatsheet
-    close-curr
-    shell make debug-with-cmd-help --no-print-directory
+    dont-repeat
+    #tui-close
+    shell make help-debug-with-cmd --no-print-directory | less
 end
 
 define restart-server
@@ -48,7 +49,7 @@ end
 
 define reload
     dont-repeat
-    close-curr
+    tui-close
     echo --------------------------------\n
     echo +++ compiling code...\n
     shell make --no-print-directory; echo "set \$retval = $?" > /tmp/gdb-retval
@@ -69,19 +70,19 @@ define reload
         # send a hard reset signal through NRST pin
         reset-mcu
 
-	# initialize breakpoints
+        # initialize breakpoints
         update-breakpoints
         tb main	
         break _unhandled_exception
 
-        # display TUI
-        #curr
+        # display TUI on startup
+        tui-open
 
         echo ----------------------------------------\n
-        echo ... 'reload' when source code is changed\n
-        echo ... 'update-breakpoints' ('ub') to refresh the breakpoints\n
-        echo ... 'curr'/'close-curr' to show/hide the Terminal UI. \n
-        echo ... 'cheatsheet' for cheatsheet\n
+        echo ... "reload" when source code is changed\n
+        echo ... "update-breakpoints" ("ub") to refresh the breakpoints\n
+        echo ... "tui-open/tui-close" to show/hide the Terminal UI. \n
+        echo ... "cheatsheet" for full cheatsheet\n
         echo ----------------------------------------\n
         cont
     end
@@ -102,27 +103,25 @@ define exit
     quit
 end
 
-define curr
+define tui-open
     dont-repeat
-    # frame
-    # list
-
-    layout src
-    focus cmd
+    #layout src
+    #focus cmd
+    tui enable
 
     echo ------------------------------------------\n
-    echo Close above TUI by "close-curr" command. \n
+    echo Close above TUI by "tui-close" command. \n
     echo ------------------------------------------\n
 end
-document curr
+document tui-open
     Show the code around currently hit breakpoint
 end
 
-define close-curr
+define tui-close
     tui disable
 end
-document close-curr
-    Close the TUI display which is opened by "curr" command.
+document tui-close
+    Close the Terminal User Interface.
 end
 
 # --- initialize ---

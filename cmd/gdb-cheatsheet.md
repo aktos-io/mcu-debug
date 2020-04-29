@@ -33,8 +33,8 @@ enable 2                turn disabled breakpoint back on
 
 ```
 ** p, print VAR         print `VAR`'s contents
-** print/x              display as Hex
-** set myvar = 5      set `myvar` to 5
+** p/x                  display as Hex
+** set myvar = 5        set `myvar` to 5
 ```
 
 ### Running the program
@@ -68,12 +68,12 @@ CTRL-C                  actually SIGINT, stop execution of current program
 ```
 ** bt        	        print stack backtrace
 ** f, frame             show current execution position
-** curr (close-curr)    show/hide TUI mode
+** tui-open (tui-close)    show/hide TUI mode
 
 ...show code around current breakpoint:
-    (gdb) curr
+    (gdb) tui-open
     ...
-    (gdb) close-curr
+    (gdb) tui-close
     (gdb) focus cmd    # <- focus to cmd
 
 ```

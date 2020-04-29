@@ -28,7 +28,7 @@ debug-with-cmd:
 	$(GCC_Path)$(GDB) -x /tmp/gdbinit
 
 
-debug-with-cmd-help:
+help-debug-with-cmd:
 	@clear
 	@echo
 	@echo "Important commands"
