@@ -12,7 +12,7 @@ ifeq (,$(GDB_Addr))
 GDB_Addr := localhost:4242
 endif
 
-debug-with-cmd:
+cmd-debugger:
 	@if [ "$(BUILD_TARGET)" != "Debug" ]; then \
 		echo ----------------------------------------------------; \
 		echo "Not in 'Debug' mode! Things might not act as you expected."; \
@@ -28,7 +28,7 @@ debug-with-cmd:
 	$(GCC_Path)$(GDB) -x /tmp/gdbinit
 
 
-help-debug-with-cmd:
+help-cmd-debugger:
 	@clear
 	@echo
 	@echo "Important commands"

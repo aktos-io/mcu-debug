@@ -35,7 +35,7 @@ end
 define cheatsheet
     dont-repeat
     #tui-close
-    shell make help-debug-with-cmd --no-print-directory | less
+    shell make help-cmd-debugger --no-print-directory | less
 end
 
 define restart-server

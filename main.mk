@@ -44,7 +44,7 @@ debug:
 		echo "in separate terminals."; \
 		echo ; \
 		echo "* Run \"make start-gdb-server\" in a terminal window"; \
-		echo "* Run \"make debug-with-cmd\" in a separate terminal window"; \
+		echo "* Run \"make cmd-debugger\" in a separate terminal window"; \
 		echo ; \
 	else	\
 		$(dir)/session.service ; \
