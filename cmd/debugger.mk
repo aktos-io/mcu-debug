@@ -1,8 +1,8 @@
-ifneq (, $(shell which arm-none-eabi-gdb))
-GDB := arm-none-eabi-gdb
+ifneq (, $(shell which $(GCC_Path)arm-none-eabi-gdb))
+GDB := $(GCC_Path)arm-none-eabi-gdb
 else
-ifneq (, $(shell which gdb-multiarch))
-GDB := gdb-multiarch
+ifneq (, $(shell which $(GCC_Path)gdb-multiarch))
+GDB := $(GCC_Path)gdb-multiarch
 else
 $(error "No GDB executable found")
 endif
@@ -25,7 +25,7 @@ cmd-debugger:
 	@echo "Start GDB server with 'make start-gdb-server' on another terminal."
 	@echo "------------------------------------------------------------------"
 	@sed "s/TARGET_ADDRESS/$(GDB_Addr)/" $(dir)/gdb-init > /tmp/gdbinit
-	$(GCC_Path)$(GDB) -x /tmp/gdbinit
+	$(GDB) -x /tmp/gdbinit
 
 
 help-cmd-debugger:
