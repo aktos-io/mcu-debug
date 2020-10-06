@@ -18,6 +18,7 @@ GDB commands by function - simple guide
 **          101             on line 101
 ** i b                  show breakpoints
 ** d, delete 1          delete a breakpoint by number
+** commands N           run set of commands when breakpoint #N is reached
 delete                  delete all breakpoints (prompted)
 ** clear                delete breakpoints at current line
 clear function          delete breakpoints at function
@@ -33,7 +34,7 @@ enable 2                turn disabled breakpoint back on
 
 ```
 ** p, print VAR         print `VAR`'s contents
-** p/x                  display as Hex
+** p/x VAR              display `VAR` as Hex
 ** set myvar = 5        set `myvar` to 5
 ```
 
