@@ -16,7 +16,8 @@ erase:
 	@echo "In order to erase a buggy code, you need to:"
 	@echo "1. either: tie Boot0 to VDD before power up."
 	@echo "2. or	: Connect the NRST pin to the SWD to let debugger load"
-	@echo "     	  the code under RESET."
+	@echo "     	  the code under RESET. (Use \"STM32 ST-LINK utility\"
+	@echo " 		  from st.com)"
 	@echo "------------------------------------------------------"
 	@echo
 	@echo
