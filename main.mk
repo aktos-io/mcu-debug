@@ -52,3 +52,7 @@ debug:
 	fi
 
 include $(dir)/cmd/debugger.mk
+
+_mcu_debug_tests:
+	@$(dir)/cmd/tests/run-tests.sh
+

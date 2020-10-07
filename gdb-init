@@ -16,7 +16,7 @@ end
 define update-breakpoints
     shell make gen-breakpoints --no-print-directory
     delete
-    source _breakpoints.txt
+    source breakpoints.txt
 end
 document update-breakpoints
     Generate hardcoded breakpoints by using "// debugger" lines
@@ -87,7 +87,6 @@ define reload
         cont
     end
 end
-
 
 define reset-mcu
     monitor halt
