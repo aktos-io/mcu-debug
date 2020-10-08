@@ -94,7 +94,14 @@ define reset-mcu
     monitor jtag_reset # send NRST signal, see https://github.com/texane/stlink/issues/774
 end
 document reset-mcu
-    Resets MCU state by sending physical NRST signal
+    Resets MCU state by sending a physical signal to the NRST pin.
+end
+
+define restart-app
+    reset-mcu
+end
+document restart-app
+    Alias for "reset-mcu"
 end
 
 define exit
