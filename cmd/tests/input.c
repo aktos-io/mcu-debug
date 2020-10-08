@@ -1,5 +1,6 @@
 
     palSetPad(GPIOA, GPIOA_LED_OUT); //// debugger 
+    chThdSleepMilliseconds(1000); // debugger: printf "Passed 1 second?\n"
 
 
 void adcReadCallback1(ADCDriver *adcp, adcsample_t *buffer, size_t n)

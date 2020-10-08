@@ -6,10 +6,11 @@ cd "$_sdir"
 make -f ../debugger.mk gen-breakpoints APP= --no-print-directory
 # breakpoints.txt must be generated
 
-if diff breakpoints.txt expected.txt; then
+if diff expected.txt breakpoints.txt &> /dev/null; then
     echo "TEST 1: Passed."
     rm ./breakpoints.txt
 else
+    [[ "$1" == "--no-diff" ]] || git diff --no-index -- expected.txt breakpoints.txt
     echo "TEST 1: FAILED!"
     exit 1
 fi
