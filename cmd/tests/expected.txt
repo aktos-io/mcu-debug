@@ -35,3 +35,4 @@ silent
 print i
 continue
 end
+break input.c:21

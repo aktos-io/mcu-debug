@@ -48,7 +48,10 @@ help-cmd-debugger:
 	@cat $(dir)/cmd/gdb-cheatsheet.md | sed -n '/^\.\.\./,/^$$/p'
 
 breakpoint_file := ./breakpoints.txt
-DEBUG_OUTPUT := true
+DEBUG_OUTPUT := false
+BRIEF_OUTPUT := true
+
+gen-breakpoints: SHELL:=/bin/bash   # HERE: this is setting the shell for this target
 gen-breakpoints:
 	@# $(App) variable is either empty or a valid path with a slash at the end
 
@@ -70,9 +73,14 @@ gen-breakpoints:
 		--include='*.h' \
 		"^[^/]*.*[^/]//\s*debugger.*" $(App)* -HnosR \
 		| sed -r \
- 		's|^([^:]+):([^:]+):\s+.*//\s*debugger:?\s*(.*)|\1\t\2\t\3|' \
- 		| while read -r file line commands; do \
- 			$(DEBUG_OUTPUT) && printf 'file: %s, line: %i, commands: %s\n' "$$file" $$line "$$commands"; \
+ 		's|^([^:]+):([^:]+):\s+.*//\s*debugger(:?\s*)(.*)|\1\t\2\t\3\t\4|' \
+ 		| while read -r file line has_cmd commands; do \
+ 			$(DEBUG_OUTPUT) && \
+ 				printf 'file: %s, line: %i, has_cmd: >|%s|<, commands: %s\n' \
+ 					"$$file" $$line "$$has_cmd" "$$commands"; \
+			if [ -z "$$has_cmd" ] || [ -z "$$commands" ] || [[ "$$commands" =~ ^/ ]]; then \
+				commands=;	\
+			fi; \
 			echo "break $${file}:$${line}" >> $(breakpoint_file); \
 			if [ -n "$$commands" ]; then \
 				echo "commands" >> $(breakpoint_file); \
@@ -81,5 +89,8 @@ gen-breakpoints:
 				echo "continue"				>> $(breakpoint_file); \
 				echo "end"					>> $(breakpoint_file); \
 			fi; \
+			$(BRIEF_OUTPUT) && \
+ 				echo -n "* $${file}:$${line}	$${commands}"; \
+ 				echo -e "\r"; \
 		done; 
-	@echo "Breakpoints written to: $(breakpoint_file)"
+	@#echo "Breakpoints written to: $(breakpoint_file)"

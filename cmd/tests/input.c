@@ -18,6 +18,7 @@ void adcReadCallback1(ADCDriver *adcp, adcsample_t *buffer, size_t n)
 //// debugger
       buffer[i]; //// debugger: skip me 
       buffer[i]; // debugger: print i 
+      buffer[i]; // debugger:// print j 
 
     }
 }
