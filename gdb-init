@@ -17,6 +17,8 @@ define update-breakpoints
     shell make gen-breakpoints --no-print-directory
     delete
     source breakpoints.txt
+    tb main 
+    break _unhandled_exception
 end
 document update-breakpoints
     Generate hardcoded breakpoints by using "// debugger" lines
@@ -70,11 +72,6 @@ define reload
         # send a hard reset signal through NRST pin
         reset-mcu
 
-        # initialize breakpoints
-        update-breakpoints
-        tb main	
-        break _unhandled_exception
-
         # display TUI on startup
         tui-open
 
@@ -92,6 +89,7 @@ define reset-mcu
     monitor halt
     monitor reset
     monitor jtag_reset # send NRST signal, see https://github.com/texane/stlink/issues/774
+    update-breakpoints
 end
 document reset-mcu
     Resets MCU state by sending a physical signal to the NRST pin.
