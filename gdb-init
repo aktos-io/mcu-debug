@@ -19,6 +19,7 @@ define update-breakpoints
     source breakpoints.txt
     tb main 
     break _unhandled_exception
+    echo Tip: Can be set manually: break Reset_Handler\n
 end
 document update-breakpoints
     Generate hardcoded breakpoints by using "// debugger" lines
