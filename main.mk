@@ -10,18 +10,18 @@ write: all
 	}
 
 erase:
-	@echo
-	@echo
-	@echo "------------------      WARNING    --------------------"
-	@echo "In order to erase a buggy code, you need to:"
-	@echo "1. either: tie Boot0 to VDD before power up."
-	@echo "2. or	: Connect the NRST pin to the SWD to let debugger load"
-	@echo "     	  the code under RESET. (Use \"STM32 ST-LINK utility\""
-	@echo " 		  from st.com)"
-	@echo "------------------------------------------------------"
-	@echo
-	@echo
-	st-flash erase
+	@st-flash erase || { \
+		echo ; \
+		echo ; \
+		echo "------------------      TIP    --------------------"; \
+		echo "In order to erase a buggy code, you need to:"; \
+		echo "1. either: Connect Boot0 to VDD before power up, power up, then erase."; \
+		echo "2. or	: Connect the NRST pin to the SWD to let the debugger load"; \
+		echo "  the code under RESET. (Original \"STM32 ST-LINK utility\" has this feature)"; \
+		echo "------------------------------------------------------"; \
+		echo ; \
+		echo ; \
+	}
 
 stop-gdb-server:
 	killall st-util 2>/dev/null; true
