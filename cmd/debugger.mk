@@ -1,17 +1,3 @@
-ifneq (, $(shell which $(GCC_Path)arm-none-eabi-gdb))
-GDB := $(GCC_Path)arm-none-eabi-gdb
-else
-ifneq (, $(shell which $(GCC_Path)gdb-multiarch))
-GDB := $(GCC_Path)gdb-multiarch
-else
-$(error "No GDB executable found")
-endif
-endif
-
-ifeq (,$(GDB_Addr))
-GDB_Addr := localhost:4242
-endif
-
 cmd-debugger:
 	@if [ "$(BUILD_TARGET)" != "Debug" ]; then \
 		echo ----------------------------------------------------; \
@@ -24,7 +10,7 @@ cmd-debugger:
 	@echo "------------------------------------------------------------------"
 	@echo "Start GDB server with 'make start-gdb-server' on another terminal."
 	@echo "------------------------------------------------------------------"
-	@sed "s/TARGET_ADDRESS/$(GDB_Addr)/" $(dir)/gdb-init > /tmp/gdbinit
+	@sed "s/TARGET_ADDRESS/$(GDB_ADDR)/" $(dir)/gdb-init > /tmp/gdbinit
 	$(GDB) -x /tmp/gdbinit
 
 
