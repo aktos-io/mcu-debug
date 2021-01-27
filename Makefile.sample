@@ -1,0 +1,21 @@
+dir := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+
+App 								:= src/Core/Src
+
+ELF_FILE						:= src/build/embedded2.elf
+GCC_PATH 						:= $(HOME)/embedded/gcc/gcc-arm-none-eabi-10-2020-q4-major/bin
+FLASHER							:= openocd
+OPENOCD_INTERFACE 	:= stlink-v2.cfg
+OPENOCD_TARGET 			:= stm32f1x.cfg
+
+include $(dir)/mcu-debug/main.mk
+
+all:
+	@cd src && make all --no-print-directory 
+
+clean:
+	@cd src && make clean --no-print-directory 
+
+configure:
+	@cd src && ~/embedded/STM32CubeMX/STM32CubeMX embedded2.ioc
+	patch -p4 src/Makefile patches/*.patch
