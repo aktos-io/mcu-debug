@@ -68,7 +68,7 @@ gen-breakpoints:
 	@# Parse application files for "// debugger" or "// debugger: commands..." lines
 	@grep --exclude='*' \
 		--exclude-dir='.git' \
-		--include='*.c' \
+		--include='*.c$(TEST_EXTENSION)' \
 		--include='*.h' \
 		"^[^/]*.*[^/]//\s*debugger.*" $(App)* -HnosR \
 		| sed -r \
