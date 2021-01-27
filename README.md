@@ -14,7 +14,9 @@ Regardless of your operating system, you need to handle the following pieces:
 3. Probably a compiler: `arm-none-eabi-gcc`
 4. Add your libraries if there are any (RTOS source code, drivers, etc)
 
-> OPTIONAL: Setting up GUI debugger: [add-gui-debugger.md](./add-gui-debugger.md)
+> OPTIONAL: Setting up GUI debugger: 
+>    * https://www.gdbgui.com/
+>    * [add-gui-debugger.md](./add-gui-debugger.md)
 
 
 ### 2. Add `mcu-debug` to your project
@@ -40,7 +42,7 @@ A. Flashing (without debugging): `make write`
 
 B. Debugging with command line:
     * In terminal 1: `make start-gdb-server`
-    * In terminal 2: `make cmd-debugger` 
+    * In terminal 2: `make cmd-debugger` (or `make gui-debugger`)
 ```
 
 # Requirements 
@@ -51,6 +53,10 @@ B. Debugging with command line:
 # Configuration variables
 
 ```
+App                 := path/to/application-folder
+ELF_FILE            := path/to/app.elf 
+PROFILE             := Debug
+
 GCC_PATH            := $(HOME)/embedded/gcc/gcc-arm-none-eabi-5_3-2016q1/bin
 GDB_ADDR            := 192.168.56.103:4242
 FLASHER             := openocd

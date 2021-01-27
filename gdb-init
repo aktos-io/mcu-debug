@@ -3,7 +3,7 @@ set pagination off
 define connect
     # "TARGET_ADDRESS" is replaced with appropriate value 
     # via regex in Makefile
-    target extended-remote TARGET_ADDRESS
+    target extended-remote {{TARGET_ADDRESS}}
 end
 
 define ub
@@ -49,39 +49,46 @@ define restart-server
     connect
 end
 
+set $use_tui = {{USE_TUI}}
+
 define reload
     dont-repeat
-    tui-close
+    if $use_tui > 0
+        tui-close
+    end
     echo --------------------------------\n
     echo +++ compiling code...\n
     shell make --no-print-directory; echo "set \$retval = $?" > /tmp/gdb-retval
     source /tmp/gdb-retval
+    shell rm /tmp/gdb-retval
     if $retval >  0
         echo !!! compilation failed!\n
         echo --------------------------------\n
     else
         echo +++ flashing the binary...\n
         # for the application code
-        load ./build/ch.elf
+        load {{ELF_FILE}}
 
         # for the symbol table
-        file ./build/ch.elf
+        file {{ELF_FILE}}
 
         echo done.\n
 
         # send a hard reset signal through NRST pin
         reset-mcu
 
-        # display TUI on startup
-        tui-open
+        if $use_tui > 0
+            # display TUI on startup
+            tui-open
 
-        echo ----------------------------------------\n
-        echo ... "reload" when source code is changed\n
-        echo ... "update-breakpoints" ("ub") to refresh the breakpoints\n
-        echo ... "tui-open/tui-close" to show/hide the Terminal UI. \n
-        echo ... "cheatsheet" for full cheatsheet\n
-        echo ----------------------------------------\n
-        cont
+            echo ----------------------------------------\n
+            echo ... "reload" when source code is changed\n
+            echo ... "update-breakpoints" ("ub") to refresh the breakpoints\n
+            echo ... "tui-open/tui-close" to show/hide the Terminal UI. \n
+            echo ... "cheatsheet" for full cheatsheet\n
+            echo ----------------------------------------\n
+        end
+        continue
     end
 end
 
@@ -131,4 +138,10 @@ end
 
 # --- initialize ---
 connect
-reload
+if $use_tui > 0
+    reload
+else
+    echo ------------------------\n
+    echo Please manually "reload"\n
+    echo ------------------------\n
+end

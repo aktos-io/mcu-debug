@@ -1,17 +1,26 @@
-cmd-debugger:
-	@if [ "$(BUILD_TARGET)" != "Debug" ]; then \
-		echo ----------------------------------------------------; \
-		echo "Not in 'Debug' mode! Things might not act as you expected."; \
-		echo 'Set "Debug" in your Target file'; \
-		echo ----------------------------------------------------; \
-		sleep 5; \
+ifeq (,$(USE_TUI))
+USE_TUI := 1
+endif
+
+__gen_gdb_init: 
+	@cat $(dir)/gdb-init \
+		| sed "s|{{TARGET_ADDRESS}}|$(GDB_ADDR)|" \
+		| sed "s|{{ELF_FILE}}|$(ELF_FILE)|" \
+		| sed "s|{{USE_TUI}}|$(USE_TUI)|" \
+		> /tmp/gdb-init
+
+cmd-debugger: 
+	@if [ "$(PROFILE)" != "Debug" ]; then \
+		echo "WARNING: ----------------------------------------------------"; \
+		echo "WARNING: Not in 'Debug' mode! Things might behave unpredictable."; \
+		echo 'WARNING: Set "Debug" in your Target file'; \
+		echo "WARNING: ----------------------------------------------------"; \
 	fi
-	$(MAKE) all
 	@echo "------------------------------------------------------------------"
-	@echo "Start GDB server with 'make start-gdb-server' on another terminal."
+	@echo "GDB server target: $(GDB_ADDR)"
 	@echo "------------------------------------------------------------------"
-	@sed "s/TARGET_ADDRESS/$(GDB_ADDR)/" $(dir)/gdb-init > /tmp/gdbinit
-	$(GDB) -x /tmp/gdbinit
+	$(MAKE) __gen_gdb_init
+	$(GDB) -x /tmp/gdb-init
 
 
 help-cmd-debugger:
@@ -36,6 +45,10 @@ help-cmd-debugger:
 breakpoint_file := ./breakpoints.txt
 DEBUG_OUTPUT := false
 BRIEF_OUTPUT := true
+
+ifeq (,$(App))
+$(error "App is not set.")
+endif
 
 gen-breakpoints: SHELL:=/bin/bash   # HERE: this is setting the shell for this target
 gen-breakpoints:

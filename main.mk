@@ -8,6 +8,11 @@ GDB_ADDR := localhost:4242
 endif
 endif
 
+ifneq (,$(GCC_PATH))
+	# add a path separator at the end
+	GCC_PATH := $(GCC_PATH)/
+endif
+
 ifneq (, $(shell which $(GCC_PATH)arm-none-eabi-gdb))
 GDB := $(GCC_PATH)arm-none-eabi-gdb
 else
@@ -31,3 +36,9 @@ help-debug:
 
 include $(dir)/cmd/debugger.mk
 
+gui-debugger:
+	@$(MAKE) __gen_gdb_init USE_TUI=0 --no-print-directory
+	gdbgui -g "$(GDB) -x /tmp/gdb-init"
+
+# Empty the default goal
+.DEFAULT_GOAL :=
