@@ -54,9 +54,7 @@ B. Debugging with command line:
 
 ```
 App                 := path/to/application-folder
-ELF_FILE            := path/to/app.elf 
-PROFILE             := Debug
-
+ELF_FILE            := path/to/app.elf  # make sure this is built with debug symbols
 GCC_PATH            := $(HOME)/embedded/gcc/gcc-arm-none-eabi-5_3-2016q1/bin
 GDB_ADDR            := 192.168.56.103:4242
 FLASHER             := openocd

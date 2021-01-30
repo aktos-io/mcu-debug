@@ -9,19 +9,11 @@ __gen_gdb_init:
 		| sed "s|{{USE_TUI}}|$(USE_TUI)|" \
 		> /tmp/gdb-init
 
-cmd-debugger: 
-	@if [ "$(PROFILE)" != "Debug" ]; then \
-		echo "WARNING: ----------------------------------------------------"; \
-		echo "WARNING: Not in 'Debug' mode! Things might behave unpredictable."; \
-		echo 'WARNING: Set "Debug" in your Target file'; \
-		echo "WARNING: ----------------------------------------------------"; \
-	fi
+cmd-debugger: __gen_gdb_init
 	@echo "------------------------------------------------------------------"
 	@echo "GDB server target: $(GDB_ADDR)"
 	@echo "------------------------------------------------------------------"
-	$(MAKE) __gen_gdb_init
 	$(GDB) -x /tmp/gdb-init
-
 
 help-cmd-debugger:
 	@clear
