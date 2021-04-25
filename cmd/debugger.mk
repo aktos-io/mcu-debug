@@ -60,15 +60,19 @@ gen-breakpoints:
 	@# Parse application files for "// debugger" or "// debugger: commands..." lines
 	@grep --exclude='*' \
 		--exclude-dir='.git' \
+        --exclude-dir='..' \
 		--include='*.c$(TEST_EXTENSION)' \
-		--include='*.h' \
+		--include='*.h$(TEST_EXTENSION)' \
+		--include='*.cpp$(TEST_EXTENSION)' \
+		--include='*.hpp$(TEST_EXTENSION)' \
 		"^[^/]*.*[^/]//\s*debugger.*" $(App)* -HnosR \
-		| sed -r \
- 		's|^([^:]+):([^:]+):\s+.*//\s*debugger(:?\s*)(.*)|\1\t\2\t\3\t\4|' \
- 		| while read -r file line has_cmd commands; do \
- 			$(DEBUG_OUTPUT) && \
- 				printf 'file: %s, line: %i, has_cmd: >|%s|<, commands: %s\n' \
- 					"$$file" $$line "$$has_cmd" "$$commands"; \
+		| sed -r 's|^([^:]+):([^:]+):\s+.*//\s*debugger(:?\s*)(.*)|\1\t\2\t\3\t\4|' \
+ 		| while read -r _file line has_cmd commands; do \
+ 			[[ "$$has_cmd" != ":" ]] && has_cmd=""; \
+ 			$(DEBUG_OUTPUT) && printf 'file: %s, line: %i, has_cmd: >|%s|<, commands: %s\n' \
+ 					"$$_file" $$line "$$has_cmd" "$$commands"; \
+            file=$$(realpath $$_file); \
+            file="$${file#$(CURDIR)/}"; \
 			if [ -z "$$has_cmd" ] || [ -z "$$commands" ] || [[ "$$commands" =~ ^/ ]]; then \
 				commands=;	\
 			fi; \
