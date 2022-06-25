@@ -38,12 +38,11 @@ breakpoint_file := ./breakpoints.txt
 DEBUG_OUTPUT := false
 BRIEF_OUTPUT := true
 
-ifeq (,$(App))
-$(error "App is not set.")
-endif
-
 gen-breakpoints: SHELL:=/bin/bash   # HERE: this is setting the shell for this target
 gen-breakpoints:
+ifeq (,$(App))
+	$(error "App configuration is required for this target to work.")
+endif
 	@# $(App) variable is either empty or a valid path with a slash at the end
 
 	@# Header
@@ -65,7 +64,7 @@ gen-breakpoints:
 		--include='*.h$(TEST_EXTENSION)' \
 		--include='*.cpp$(TEST_EXTENSION)' \
 		--include='*.hpp$(TEST_EXTENSION)' \
-		"^[^/]*.*[^/]//\s*debugger.*" $(App)* -HnosR \
+		"^[^/]*.*[^/]//\s*debugger.*" $(App) -HnosR \
 		| sed -r 's|^([^:]+):([^:]+):\s+.*//\s*debugger(:?\s*)(.*)|\1\t\2\t\3\t\4|' \
  		| while read -r _file line has_cmd commands; do \
  			[[ "$$has_cmd" != ":" ]] && has_cmd=""; \

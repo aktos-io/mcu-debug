@@ -52,14 +52,40 @@ B. Debugging with command line:
 
 # Configuration variables
 
+#### App
 ```
-App                 := path/to/application-folder
-ELF_FILE            := path/to/app.elf  # make sure this is built with debug symbols
-GCC_PATH            := $(HOME)/embedded/gcc/gcc-arm-none-eabi-5_3-2016q1/bin
-GDB_ADDR            := 192.168.56.103:4242
-FLASHER             := openocd
+App                 := Src/* my_lib/*
+```
+This is the variable that we use to identify the files which are to be used generate the breakpoints from `// debugger` lines. Use the `/*` wildcard postfix and use a space character to point multiple directories. Required.
 
-# OpenOCD specific
+#### Compiled File
+```
+ELF_FILE            := path/to/app.elf  # make sure this is built with debug symbols
+BIN_FILE 			:= path/to/app.bin
+```
+This is the compiled application files.
+
+#### GCC Path
+```
+GCC_PATH            := $(HOME)/embedded/gcc/gcc-arm-none-eabi-5_3-2016q1/bin
+```
+Optional, you may omit if you won't compile your application. 
+
+#### GDB Address
+```
+GDB_ADDR            := 192.168.56.103:4242
+```
+GDB Server `address:port`.
+
+#### Flasher Definition
+If you use OpenOCD as your debugger, use the following settings:
+```
+FLASHER             := openocd
 OPENOCD_INTERFACE   := stlink-v2.cfg
 OPENOCD_TARGET      := stm32f0x.cfg
+```
+
+If you use Stlink as your debugger, use the following settings:
+```
+FLASHER							:= stlink
 ```

@@ -1,6 +1,14 @@
 # write program to MCU
-write: all
-	@st-flash --reset write build/ch.bin 0x8000000 || { \
+__check_bin_file__:
+ifeq (,$(BIN_FILE))
+	$(error "BIN_FILE is not set. What do we write?")
+endif
+ifeq ("$(wildcard $(BIN_FILE))","")
+	$(error "Specified BIN_FILE can not be found: $(BIN_FILE)")
+endif
+
+write: __check_bin_file__ all
+	@st-flash --reset write $(BIN_FILE) 0x8000000 || { \
 		echo "----------------------------------------------------------------"; \
 		echo "HINT: Try resetting MCU (NRST->GND, then VDD) then retry loading."; \
 		echo "----------------------------------------------------------------"; \
