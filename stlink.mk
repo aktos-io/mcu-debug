@@ -15,6 +15,15 @@ write: __check_bin_file__ all
 		exit 5; \
 	}
 
+# See https://github.com/stlink-org/stlink/blob/develop/doc/tutorial.md#running-programs-from-sram
+write-to-ram: __check_bin_file__ all
+	@st-flash --reset write $(BIN_FILE) 0x20000000 || { \
+		echo "----------------------------------------------------------------"; \
+		echo "HINT: Try resetting MCU (NRST->GND, then VDD) then retry loading."; \
+		echo "----------------------------------------------------------------"; \
+		exit 5; \
+	}
+
 erase:
 	@st-flash erase || { \
 		echo ; \
