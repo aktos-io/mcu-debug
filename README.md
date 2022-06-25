@@ -52,6 +52,14 @@ B. Debugging with command line:
 
 # Configuration variables
 
+#### MCU_DEBUG_MAJOR
+
+This variable is used to avoid users from blindly using this tool if any major change has been made. 
+
+```
+MCU_DEBUG_MAJOR 	:= 2
+```
+
 #### App
 ```
 App                 := Src/* my_lib/*

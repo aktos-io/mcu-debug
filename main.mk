@@ -23,6 +23,11 @@ $(error "mcu-debug: No GDB executable found")
 endif
 endif
 
+include $(dir)/MAJOR_VERSION
+ifneq ($(MCU_DEBUG_CURRENT_MAJOR_VERSION),$(MCU_DEBUG_MAJOR))
+$(error mcu-debug: Please set MCU_DEBUG_MAJOR variable correctly. Major versions do not match. Current version is: $(MCU_DEBUG_CURRENT_MAJOR_VERSION))
+endif
+
 ifeq (openocd,$(FLASHER))
 include $(dir)/openocd.mk
 else
