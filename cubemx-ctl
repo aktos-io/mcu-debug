@@ -5,13 +5,17 @@ safe_source () { [[ ! -z ${1:-} ]] && source $1; _dir="$(cd "$(dirname "${BASH_S
 
 
 CUBEMX_PATH="$HOME/embedded/STM32CubeMX/"
+CUBEMX_EXE="java -jar $CUBEMX_PATH/STM32CubeMX"
 
+tmpfile=$(mktemp)
+trap "rm $tmpfile" exit
 
 show_help(){
     cat <<HELP
     $(basename $0) [options] my-cubemx-project.ioc
     Options:
-        --no-gui    : Do not open GUI
+        --no-gui                    : Do not open GUI
+        --cmd  "Command to run"     : Run the command inside running CubeMX
 HELP
 }
 
@@ -32,6 +36,7 @@ help_die(){
 # ---------------------------
 # Initialize parameters
 WANT_GUI=true
+COMMAND=
 # ---------------------------
 args_backup=("$@")
 args=()
@@ -46,6 +51,9 @@ while [ $# -gt 0 ]; do
         # --------------------------------------------------------
         --no-gui)
             WANT_GUI=false
+            ;;
+        --cmd) shift
+            echo "$1" > $tmpfile
             ;;
         # --------------------------------------------------------
         -*) # Handle unrecognized options
@@ -66,14 +74,11 @@ done; set -- "${args_backup[@]-}"
 
 $WANT_GUI && flag="-s" || flag="-q"
 
-config_file="${arg1:-}"
+# Load the configuration file by default
+if ! [[ -e $tmpfile ]]; then
+    config_file="${arg1:-}"
+    [[ -z $config_file ]] && die "Config file is required."
+    echo "config load $(realpath $config_file)" > $tmpfile
+fi
 
-[[ -z $config_file ]] && die "Config file is required."
-
-tmpfile=$(mktemp)
-trap "rm $tmpfile" exit
-
-set +x
-echo "config load $(realpath $config_file)" > $tmpfile
-
-java -jar $CUBEMX_PATH/STM32CubeMX $flag $tmpfile
+$CUBEMX_EXE $flag $tmpfile
