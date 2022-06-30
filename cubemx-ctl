@@ -16,6 +16,7 @@ show_help(){
     Options:
         --no-gui                    : Do not open GUI
         --cmd  "Command to run"     : Run the command inside running CubeMX
+        --generate config.ioc       : Generate project from config file
 HELP
 }
 
@@ -53,7 +54,10 @@ while [ $# -gt 0 ]; do
             WANT_GUI=false
             ;;
         --cmd) shift
-            echo "$1" > $tmpfile
+            COMMAND="cmd"
+            ;;
+        --generate)
+            COMMAND="generate"
             ;;
         # --------------------------------------------------------
         -*) # Handle unrecognized options
@@ -74,11 +78,23 @@ done; set -- "${args_backup[@]-}"
 
 $WANT_GUI && flag="-s" || flag="-q"
 
-# Load the configuration file by default
-if ! [[ -e $tmpfile ]]; then
-    config_file="${arg1:-}"
-    [[ -z $config_file ]] && die "Config file is required."
-    echo "config load $(realpath $config_file)" > $tmpfile
-fi
 
+# Load the configuration file by default
+config_file="${arg1:-}"
+echo "config load $(realpath $config_file)" > $tmpfile
+
+case $COMMAND in
+    cmd)
+        echo "$arg1" > $tmpfile
+        ;;
+    generate)
+        echo "project generate" >> $tmpfile
+        echo "exit" >> $tmpfile
+        ;;
+esac
+
+
+echo "--- CubeMX Script ---"
+cat $tmpfile
+echo "---------------------"
 $CUBEMX_EXE $flag $tmpfile
