@@ -17,3 +17,15 @@ Insert a `no operation` statement and put a breakpoint on that line:
 ```c
 (void) 0; // debugger
 ```
+
+### Examining the memory 
+
+https://sourceware.org/gdb/onlinedocs/gdb/Memory.html
+
+```c
+x addr
+```
+
+```
+x/10x &dmabuf
+```
