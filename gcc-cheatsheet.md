@@ -32,4 +32,4 @@ x/10x &dmabuf
 
 ### Examining the call stack
 
-Use `up` when a breakpoint is hit. 
+Use `up` when a breakpoint is hit. (See: https://www.cse.unsw.edu.au/~learn/debugging/modules/gdb_call_stack/)
