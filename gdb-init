@@ -94,11 +94,13 @@ define reload
 end
 
 define reset-mcu
+    tui-close
     monitor reset halt
     # START STLINK SPECIFIC
     monitor jtag_reset # send NRST signal, see https://github.com/texane/stlink/issues/774
     # END STLINK SPECIFIC
     update-breakpoints
+    tui-open
 end
 document reset-mcu
     Resets MCU state by sending a physical signal to the NRST pin.
