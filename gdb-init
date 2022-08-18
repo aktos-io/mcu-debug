@@ -93,14 +93,37 @@ define reload
     end
 end
 
+define reload-without-compile
+    dont-repeat
+    if $use_tui > 0
+        tui-close
+    end
+    echo +++ flashing the binary...\n
+    # for the application code
+    load {{ELF_FILE}}
+
+    # for the symbol table
+    file {{ELF_FILE}}
+
+    echo done.\n
+
+    # send a hard reset signal through NRST pin
+    reset-mcu
+
+    continue
+end
+
+
 define reset-mcu
-    tui-close
+    #tui-close
     monitor reset halt
     # START STLINK SPECIFIC
     monitor jtag_reset # send NRST signal, see https://github.com/texane/stlink/issues/774
     # END STLINK SPECIFIC
     update-breakpoints
-    tui-open
+    if $use_tui > 0
+        tui-open
+    end
 end
 document reset-mcu
     Resets MCU state by sending a physical signal to the NRST pin.
@@ -146,5 +169,6 @@ if $use_tui > 0
 else
     echo ------------------------\n
     echo Please manually "reload"\n
+    echo "cheatsheet" for full cheatsheet\n
     echo ------------------------\n
 end

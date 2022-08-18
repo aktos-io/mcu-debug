@@ -1,5 +1,5 @@
 ifeq (,$(USE_TUI))
-USE_TUI := 1
+USE_TUI := 0
 endif
 
 __gen_gdb_init: 

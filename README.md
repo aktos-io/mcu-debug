@@ -97,3 +97,13 @@ If you use Stlink as your debugger, use the following settings:
 ```
 FLASHER							:= stlink
 ```
+
+#### Terminal UI
+
+If you want to use terminal UI, use the following setting:
+
+```
+USE_TUI    := 1
+```
+
+
