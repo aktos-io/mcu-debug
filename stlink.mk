@@ -43,7 +43,8 @@ stop-gdb-server:
 
 start-gdb-server: stop-gdb-server
 	@while true; do 												\
-		st-util; 													\
+    echo "(Note: We do not reset the target)"; \
+		st-util --no-reset; 													\
 		echo ""; 													\
 		echo "--------- restarting gdb server -------------"; 		\
 		echo ""; 													\
