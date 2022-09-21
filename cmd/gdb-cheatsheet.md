@@ -12,11 +12,10 @@ GDB commands by function - simple guide
 ### Breakpoints
 
 ```
-** b, break ...         set a breakpoint:
-**          basic.c:101     on line 101 of file basic.c
-**          main            on a function
-**          101             on line 101
+** break file.c:101 on  set a breakpoint on line 101 of file file.c
+** watch my_variable    set software watchpoint on my_variable
 ** i b                  show breakpoints
+** i watchpoints        show current watchpoints
 ** d, delete 1          delete a breakpoint by number
 ** commands N           run set of commands when breakpoint #N is reached
 delete                  delete all breakpoints (prompted)
@@ -25,8 +24,6 @@ clear function          delete breakpoints at function
 clear line              delete breakpoints at line
 disable 2               turn a breakpoint off, but don't remove it
 enable 2                turn disabled breakpoint back on
-** watch data           set software watchpoint on variable
-** i watchpoints        show current watchpoints
 ** update-breakpoints, ub      generates and uses breakpoints from source code
 ```
 
@@ -42,7 +39,8 @@ enable 2                turn disabled breakpoint back on
 
 ```
 ** c, cont              continue the program
-** reload               reload the program
+** reload 				compile and upload code to the target 
+** reload-without-compile
 
 ...basic usage:
     # should stop at main()
@@ -67,8 +65,9 @@ CTRL-C                  actually SIGINT, stop execution of current program
 ### Stack backtrace
 
 ```
-** bt        	        print stack backtrace
-** f, frame             show current execution position
+** bt        	         print stack backtrace
+** f, frame              show current execution position
+** where                show where this function is called from
 ** tui-open (tui-close)    show/hide TUI mode
 
 ...show code around current breakpoint:
