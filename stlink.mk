@@ -41,10 +41,18 @@ erase:
 stop-gdb-server:
 	killall st-util 2>/dev/null; true
 
-start-gdb-server: stop-gdb-server
+start-gdb-server-no-reset: stop-gdb-server
 	@while true; do 												\
-    echo "(Note: We do not reset the target)"; \
-		st-util --no-reset; 													\
+		st-util --no-reset; 										\
+		echo ""; 													\
+		echo "--------- restarting gdb server -------------"; 		\
+		echo ""; 													\
+		sleep 1s; 													\
+		done
+
+start-gdb-server-with-reset: stop-gdb-server
+	@while true; do 												\
+		st-util ; 										\
 		echo ""; 													\
 		echo "--------- restarting gdb server -------------"; 		\
 		echo ""; 													\

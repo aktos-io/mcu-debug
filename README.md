@@ -41,7 +41,7 @@ Add the following instructions to your project's `README`:
 A. Flashing (without debugging): `make write`
 
 B. Debugging with command line:
-    * In terminal 1: `make start-gdb-server`
+    * In terminal 1: `make start-gdb-server-with-reset`
     * In terminal 2: `make cmd-debugger` (or `make gui-debugger`)
 ```
 
