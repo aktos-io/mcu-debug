@@ -7,7 +7,8 @@ ifeq ("$(wildcard $(BIN_FILE))","")
 	$(error "Specified BIN_FILE can not be found: $(BIN_FILE)")
 endif
 
-write: __check_bin_file__ all
+write: all 
+	$(MAKE) __check_bin_file__
 	@st-flash --reset write $(BIN_FILE) 0x8000000 || { \
 		echo "----------------------------------------------------------------"; \
 		echo "HINT: Try resetting MCU (NRST->GND, then VDD) then retry loading."; \
@@ -16,7 +17,8 @@ write: __check_bin_file__ all
 	}
 
 # See https://github.com/stlink-org/stlink/blob/develop/doc/tutorial.md#running-programs-from-sram
-write-to-ram: __check_bin_file__ all
+write-to-ram: all 
+	$(MAKE) __check_bin_file__
 	@st-flash --reset write $(BIN_FILE) 0x20000000 || { \
 		echo "----------------------------------------------------------------"; \
 		echo "HINT: Try resetting MCU (NRST->GND, then VDD) then retry loading."; \
